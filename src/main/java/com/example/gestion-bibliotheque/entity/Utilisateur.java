@@ -4,7 +4,7 @@ import com.example.gestion_bibliotheque.enums.Role;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 @Entity
 @Data
@@ -25,5 +25,10 @@ public class Utilisateur {
     private Role role;
 
     private Timestamp dateCreation;
+
+    @PrePersist
+    protected void onCreate() {
+        this.dateCreation = new Timestamp(System.currentTimeMillis());
+    }
 
 }

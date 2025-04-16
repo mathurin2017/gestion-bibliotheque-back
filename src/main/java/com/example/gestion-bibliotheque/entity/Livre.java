@@ -3,7 +3,7 @@ package com.example.gestion_bibliotheque.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
@@ -37,5 +37,10 @@ public class Livre {
             inverseJoinColumns = @JoinColumn(name = "id_categorie")
     )
     private List<Categorie> categories;
+
+    @PrePersist
+    protected void onCreate() {
+        this.dateAjout = new Timestamp(System.currentTimeMillis());
+    }
 
 }

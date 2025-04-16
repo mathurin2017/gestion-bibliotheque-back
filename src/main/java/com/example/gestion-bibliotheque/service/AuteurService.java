@@ -1,7 +1,9 @@
 package com.example.gestion_bibliotheque.service;
 
 import com.example.gestion_bibliotheque.entity.Auteur;
+import com.example.gestion_bibliotheque.exception.ResourceNotFoundException;
 import com.example.gestion_bibliotheque.repository.AuteurRepository;
+import com.example.gestion_bibliotheque.utils.FunctionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,23 +24,17 @@ public class AuteurService {
     }
 
     public Auteur findById(int id) {
+        FunctionUtils.validateId(id);
         return auteurRepository.findById(id).orElse(null);
-    }
-
-    public Auteur findByNom(String nom) {
-        return auteurRepository.findByNom(nom);
     }
 
     public Auteur createOrUpdate(Auteur auteur) {
         return auteurRepository.save(auteur);
     }
 
-    public void delete(int id) {
+    public void delete(int id) throws ResourceNotFoundException {
+        if (!auteurRepository.existsById(id)) throw new ResourceNotFoundException("Auteur with id " + id + " not found.");
         auteurRepository.deleteById(id);
-    }
-
-    public void delete(Auteur auteur) {
-        auteurRepository.delete(auteur);
     }
 
 }
