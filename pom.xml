@@ -11,7 +11,7 @@
 	<groupId>com.example</groupId>
 	<artifactId>gestion-bibliotheque</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>gestion_bibliotheque</name>
+	<name>gestion-bibliotheque</name>
 	<description>Gestion d&apos;un bibliothèque</description>
 	<url/>
 	<licenses>
